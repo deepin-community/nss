@@ -73,6 +73,11 @@ COMMON_MAKE_FLAGS := \
 	$(and $(filter x32,$(shell dpkg-architecture -qDEB_HOST_ARCH)),USE_X32=1) \
 	$(NULL)
 
+# Disable -Werror on less mainline architectures.
+ifneq (,$(filter-out i386 x86_64 aarch64,$(DEB_HOST_GNU_CPU)))
+COMMON_MAKE_FLAGS += NSS_ENABLE_WERROR=0
+endif
+
 NSS_TOOLS := \
 	certutil \
 	chktest \

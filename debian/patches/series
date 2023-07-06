@@ -1,3 +1,4 @@
 38_hurd.patch
 80_security_tools.patch
 38_hppa.patch
+99_vale_curve25519.patch
