@@ -1,3 +1,17 @@
+nss (2:3.92-1) unstable; urgency=medium
+
+  * New upstream release. Closes: #1049979
+  * nss/lib/dbm/include/mcom_db.h: Undo previous changes for hppa, the issue
+    was fixed upstream.
+
+ -- Mike Hommey <glandium@debian.org>  Fri, 18 Aug 2023 04:53:54 +0900
+
+nss (2:3.91-1) unstable; urgency=medium
+
+  * New upstream release.
+
+ -- Mike Hommey <glandium@debian.org>  Wed, 05 Jul 2023 15:18:12 +0900
+
 nss (2:3.90-3) unstable; urgency=medium
 
   * nss/lib/freebl/Makefile: Disable vale curve25519 code. It doesn't support
