@@ -117,6 +117,7 @@ libnssutil3.so libnss3 #MINVER#
  (symver)NSSUTIL_3.59 2:3.59
  (symver)NSSUTIL_3.82 2:3.82
  (symver)NSSUTIL_3.90 2:3.90
+ (symver)NSSUTIL_3.94 2:3.94
 libsmime3.so libnss3 #MINVER#
 * Build-Depends-Package: libnss3-dev
  (symver)NSS_3.10 2:3.13.4-2~
