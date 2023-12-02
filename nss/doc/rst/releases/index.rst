@@ -8,6 +8,8 @@ Releases
    :glob:
    :hidden:
 
+   nss_3_95.rst
+   nss_3_94.rst
    nss_3_93.rst
    nss_3_92.rst
    nss_3_91_0.rst
@@ -57,16 +59,30 @@ Releases
 
 .. note::
 
-   **NSS 3.93.0** is the latest version of NSS.
-   Complete release notes are available here: :ref:`mozilla_projects_nss_nss_3_91_0_release_notes`
+   **NSS 3.95.0** is the latest version of NSS.
+   Complete release notes are available here: :ref:`mozilla_projects_nss_nss_3_95_0_release_notes`
 
-   **NSS 3.90.0 (ESR)** is the latest version of NSS.
-   Complete release notes are available here: :ref:`mozilla_projects_nss_nss_3_90_0_release_notes`
+   **NSS 3.90.1 (ESR)** is the latest version of NSS.
+   Complete release notes are available here: :ref:`mozilla_projects_nss_nss_3_90_1_release_notes`
 
 .. container::
 
-   Changes in 3.93 included in this release:
+   Changes in 3.95 included in this release:
 
-   - Bug 1849471 - Update zlib in NSS to 1.3.
-   - Bug 1848183 - softoken: iterate hashUpdate calls for long inputs.
-   - Bug 1813401 - regenerate NameConstraints test certificates.
+  - Bug 1842932 - Bump builtins version number.
+  - Bug 1851044: Remove Email trust bit from Autoridad de Certificacion Firmaprofesional CIF A62634068 root cert.
+  - Bug 1855318: Remove 4 DigiCert (Symantec/Verisign) Root Certificates from NSS.
+  - Bug 1851049: Remove 3 TrustCor Root Certificates from NSS.
+  - Bug 1850982 - Remove Camerfirma root certificates from NSS.
+  - Bug 1842935 - Remove old Autoridad de Certificacion Firmaprofesional Certificate.
+  - Bug 1860670 - Add four Commscope root certificates to NSS.
+  - Bug 1850598 - Add TrustAsia Global Root CA G3 and G4 root certificates.
+  - Bug 1863605 - Include P-384 and P-521 Scalar Validation from HACL*
+  - Bug 1861728 - Include P-256 Scalar Validation from HACL*.
+  - Bug 1861265 After the HACL 256 ECC patch, NSS incorrectly encodes 256 ECC without DER wrapping at the softoken level
+  - Bug 1837987:Add means to provide library parameters to C_Initialize
+  - Bug 1573097 - clang format
+  - Bug 1854795 - add OSXSAVE and XCR0 tests to AVX2 detection.
+  - Bug 1858241 - Typo in ssl3_AppendHandshakeNumber
+  - Bug 1858241 - Introducing input check of ssl3_AppendHandshakeNumber
+  - Bug 1573097 - Fix Invalid casts in instance.c

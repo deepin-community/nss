@@ -22,8 +22,8 @@
  * SOFTWARE.
  */
 
-#ifndef __internal_Hacl_Hash_SHA1_H
-#define __internal_Hacl_Hash_SHA1_H
+#ifndef __Hacl_P384_H
+#define __Hacl_P384_H
 
 #if defined(__cplusplus)
 extern "C" {
@@ -32,28 +32,37 @@ extern "C" {
 #include <string.h>
 #include "krml/internal/types.h"
 #include "krml/lowstar_endianness.h"
-#include "krml/internal/target.h"
 
-#include "../Hacl_Hash_SHA1.h"
+#include "lib_intrinsics.h"
 
-void Hacl_Hash_Core_SHA1_legacy_init(uint32_t *s);
+/*******************************************************************************
 
-void Hacl_Hash_Core_SHA1_legacy_finish(uint32_t *s, uint8_t *dst);
+ Verified C library for ECDSA and ECDH functions over the P-384 NIST curve.
 
-void Hacl_Hash_SHA1_legacy_update_multi(uint32_t *s, uint8_t *blocks, uint32_t n_blocks);
+ This module implements signing and verification, key validation, conversions
+ between various point representations, and ECDH key agreement.
 
-void
-Hacl_Hash_SHA1_legacy_update_last(
-    uint32_t *s,
-    uint64_t prev_len,
-    uint8_t *input,
-    uint32_t input_len);
+*******************************************************************************/
 
-void Hacl_Hash_SHA1_legacy_hash(uint8_t *input, uint32_t input_len, uint8_t *dst);
+/******************/
+/* Key validation */
+/******************/
+
+/**
+Private key validation.
+
+  The function returns `true` if a private key is valid and `false` otherwise.
+
+  The argument `private_key` points to 32 bytes of valid memory, i.e., uint8_t[32].
+
+  The private key is valid:
+    • 0 < `private_key` < the order of the curve
+*/
+bool Hacl_P384_validate_private_key(uint8_t *private_key);
 
 #if defined(__cplusplus)
 }
 #endif
 
-#define __internal_Hacl_Hash_SHA1_H_DEFINED
+#define __Hacl_P384_H_DEFINED
 #endif
