@@ -32,6 +32,7 @@ typedef enum {
     ssl_hs_finished = 20,
     ssl_hs_certificate_status = 22,
     ssl_hs_key_update = 24,
+    ssl_hs_compressed_certificate = 25,
     ssl_hs_next_proto = 67,
     ssl_hs_message_hash = 254,           /* Not a real message. */
     ssl_hs_ech_outer_client_hello = 257, /* Not a real message. */
@@ -83,6 +84,8 @@ typedef enum {
     ssl_kea_ecdh_psk = 5,
     ssl_kea_dh_psk = 6,
     ssl_kea_tls13_any = 7,
+    ssl_kea_ecdh_hybrid = 8,
+    ssl_kea_ecdh_hybrid_psk = 9,
     ssl_kea_size /* number of ssl_kea_ algorithms */
 } SSLKEAType;
 
@@ -257,8 +260,9 @@ typedef enum {
     ssl_grp_ffdhe_4096 = 258,
     ssl_grp_ffdhe_6144 = 259,
     ssl_grp_ffdhe_8192 = 260,
-    ssl_grp_none = 65537,        /* special value */
-    ssl_grp_ffdhe_custom = 65538 /* special value */
+    ssl_grp_kem_xyber768d00 = 25497, /* draft-tls-westerbaan-xyber768d00-02 */
+    ssl_grp_none = 65537,            /* special value */
+    ssl_grp_ffdhe_custom = 65538     /* special value */
 } SSLNamedGroup;
 
 typedef struct SSLExtraServerCertDataStr {
@@ -537,6 +541,7 @@ typedef enum {
     ssl_signed_cert_timestamp_xtn = 18,
     ssl_padding_xtn = 21,
     ssl_extended_master_secret_xtn = 23,
+    ssl_certificate_compression_xtn = 27,
     ssl_record_size_limit_xtn = 28,
     ssl_delegated_credentials_xtn = 34,
     ssl_session_ticket_xtn = 35,
@@ -567,7 +572,7 @@ typedef enum {
 /* SSL_MAX_EXTENSIONS includes the maximum number of extensions that are
  * supported for any single message type.  That is, a ClientHello; ServerHello
  * and TLS 1.3 NewSessionTicket and HelloRetryRequest extensions have fewer. */
-#define SSL_MAX_EXTENSIONS 21
+#define SSL_MAX_EXTENSIONS 22
 
 /* Deprecated */
 typedef enum {
