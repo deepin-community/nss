@@ -127,7 +127,6 @@ libsmime3.so libnss3 #MINVER#
  (symver)NSS_3.15 2:3.15
  (symver)NSS_3.16 2:3.16
  (symver)NSS_3.18 2:3.18
- (symver)NSS_3.89 2:3.89
  (symver)NSS_3.2 2:3.13.4-2~
  (symver)NSS_3.2.1 2:3.13.4-2~
  (symver)NSS_3.3 2:3.13.4-2~
@@ -137,8 +136,10 @@ libsmime3.so libnss3 #MINVER#
  (symver)NSS_3.7 2:3.13.4-2~
  (symver)NSS_3.7.2 2:3.13.4-2~
  (symver)NSS_3.8 2:3.13.4-2~
+ (symver)NSS_3.89 2:3.89
  (symver)NSS_3.9 2:3.13.4-2~
  (symver)NSS_3.9.3 2:3.13.4-2~
+ (symver)NSS_3.99 2:3.99
 libsoftokn3.so libnss3 #MINVER#
 * Build-Depends-Package: libnss3-dev
  (symver)NSS_3.4 2:3.13.4-2~
