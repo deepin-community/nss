@@ -1,3 +1,22 @@
+nss (2:3.102-1) unstable; urgency=medium
+
+  * New upstream release.
+
+ -- Mike Hommey <glandium@debian.org>  Wed, 10 Jul 2024 08:54:51 +0900
+
+nss (2:3.101-1) unstable; urgency=medium
+
+  * New upstream release.
+  * debian/libnss3.symbols: Add NSS_3.101 and NSSUTIL_3.101 symbol versions.
+
+ -- Mike Hommey <glandium@debian.org>  Wed, 12 Jun 2024 06:13:56 +0900
+
+nss (2:3.100-1) unstable; urgency=medium
+
+  * New upstream release.
+
+ -- Mike Hommey <glandium@debian.org>  Wed, 15 May 2024 09:27:25 +0900
+
 nss (2:3.99-1) unstable; urgency=medium
 
   * New upstream release.
