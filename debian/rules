@@ -45,9 +45,9 @@ TOOLCHAIN += CCC=$(CXX)
 ifeq ($(origin RANLIB),default)
 TOOLCHAIN += RANLIB=$(DEB_HOST_GNU_TYPE)-ranlib
 endif
-TOOLCHAIN += OS_TEST=$(DEB_HOST_GNU_CPU)
-TOOLCHAIN += KERNEL=$(DEB_HOST_ARCH_OS)
 endif
+TOOLCHAIN += OS_TEST=$(if $(filter-out powerpc64le,$(DEB_HOST_GNU_CPU)),$(DEB_HOST_GNU_CPU),ppc64le)
+TOOLCHAIN += KERNEL=$(DEB_HOST_ARCH_OS)
 
 # $(foreach foo,$(list),$(call cmd,some command $(foo))) expands to
 #    some command first-elem

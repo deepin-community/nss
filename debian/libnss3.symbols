@@ -21,6 +21,7 @@ libnss3.so libnss3 #MINVER#
  HASH_GetType@NSS_3.12 2:3.13.4-2~
  (symver)NSS_3.10 2:3.13.4-2~
  (symver)NSS_3.10.2 2:3.13.4-2~
+ (symver)NSS_3.101 2:3.101
  (symver)NSS_3.11 2:3.13.4-2~
  (symver)NSS_3.11.1 2:3.13.4-2~
  (symver)NSS_3.11.2 2:3.13.4-2~
@@ -99,6 +100,7 @@ libnssdbm3.so libnss3 #MINVER#
  (symver)NSSDBM_3.12 2:3.13.4-2~
 libnssutil3.so libnss3 #MINVER#
 * Build-Depends-Package: libnss3-dev
+ (symver)NSSUTIL_3.101 2:3.101
  (symver)NSSUTIL_3.12 2:3.13.4-2~
  (symver)NSSUTIL_3.12.3 2:3.13.4-2~
  (symver)NSSUTIL_3.12.5 2:3.13.4-2~
@@ -121,6 +123,7 @@ libnssutil3.so libnss3 #MINVER#
 libsmime3.so libnss3 #MINVER#
 * Build-Depends-Package: libnss3-dev
  (symver)NSS_3.10 2:3.13.4-2~
+ (symver)NSS_3.101 2:3.101
  (symver)NSS_3.12.10 2:3.13.4-2~
  (symver)NSS_3.12.2 2:3.13.4-2~
  (symver)NSS_3.13 2:3.13.4-2~
