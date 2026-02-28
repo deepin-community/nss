@@ -1,3 +1,9 @@
+nss (2:3.105-2deepin1) unstable; urgency=medium
+
+  * fix CVE-2026-2781 
+
+ -- zengwei <zengwei1@uniontech.com>  Sat, 28 Feb 2026 10:09:36 +0800
+
 nss (2:3.105-2) unstable; urgency=medium
 
   * debian/rules: Set OS_TEST properly on ppc64el.
