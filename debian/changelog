@@ -1,8 +1,49 @@
-nss (2:3.105-2deepin1) unstable; urgency=medium
+nss (2:3.110-1+deb13u2) trixie-security; urgency=medium
 
-  * fix CVE-2026-2781 
+  * CVE-2026-6766
+  * CVE-2026-6767
+  * CVE-2026-6772
 
- -- zengwei <zengwei1@uniontech.com>  Sat, 28 Feb 2026 10:09:36 +0800
+ -- Moritz Mühlenhoff <jmm@debian.org>  Sun, 17 May 2026 18:37:16 +0200
+
+nss (2:3.110-1+deb13u1) trixie-security; urgency=medium
+
+  * CVE-2026-2781
+
+ -- Moritz Mühlenhoff <jmm@debian.org>  Wed, 25 Feb 2026 20:47:21 +0100
+
+nss (2:3.110-1) unstable; urgency=medium
+
+  * New upstream release.
+  * debian/libnss3.symbols: Add NSS_3.110 symbol version.
+
+ -- Mike Hommey <glandium@debian.org>  Wed, 02 Apr 2025 08:39:10 +0900
+
+nss (2:3.109-1) unstable; urgency=medium
+
+  * New upstream release.
+
+ -- Mike Hommey <glandium@debian.org>  Wed, 05 Mar 2025 06:13:17 +0900
+
+nss (2:3.108-1) unstable; urgency=medium
+
+  * New upstream release.
+  * debian/libnss3.symbols: Add NSS_3.107 (not a typo) and NSSUTIL_3.108
+    symbol versions.
+
+ -- Mike Hommey <glandium@debian.org>  Sun, 16 Feb 2025 05:02:59 +0900
+
+nss (2:3.107-1) unstable; urgency=medium
+
+  * New upstream release.
+
+ -- Mike Hommey <glandium@debian.org>  Wed, 08 Jan 2025 07:35:40 +0900
+
+nss (2:3.106-1) unstable; urgency=medium
+
+  * New upstream release.
+
+ -- Mike Hommey <glandium@debian.org>  Tue, 19 Nov 2024 07:29:02 +0900
 
 nss (2:3.105-2) unstable; urgency=medium
 

@@ -8,11 +8,18 @@ Releases
    :glob:
    :hidden:
 
+   nss_3_110.rst
+   nss_3_109.rst
+   nss_3_108.rst
+   nss_3_101_3.rst
+   nss_3_107.rst
+   nss_3_106.rst
+   nss_3_105.rst
    nss_3_104.rst
    nss_3_103.rst
    nss_3_102_1.rst
    nss_3_102.rst
-   nss_3_101.2.rst
+   nss_3_101_2.rst
    nss_3_101_1.rst
    nss_3_101.rst
    nss_3_100.rst
@@ -76,44 +83,33 @@ Releases
 
 .. note::
 
-   **NSS 3.104** is the latest version of NSS.
-   Complete release notes are available here: :ref:`mozilla_projects_nss_nss_3_104_release_notes`
+   **NSS 3.110** is the latest version of NSS.
+   Complete release notes are available here: :ref:`mozilla_projects_nss_nss_3_110_release_notes`
 
-   **NSS 3.101.2 (ESR)** is the latest ESR version of NSS.
-   Complete release notes are available here: :ref:`mozilla_projects_nss_nss_3_101_1_release_notes`
+   **NSS 3.101.3 (ESR)** is the latest ESR version of NSS.
+   Complete release notes are available here: :ref:`mozilla_projects_nss_nss_3_101_3_release_notes`
 
 .. container::
 
-   Changes in 3.104 included in this release:
+   Changes in 3.110 included in this release:
 
-   - Bug 1910071 - Copy original corpus to heap-allocated buffer
-   - Bug 1910079 - Fix min ssl version for DTLS client fuzzer
-   - Bug 1908990 - Remove OS2 support just like we did on NSPR
-   - Bug 1910605 - clang-format NSS improvements
-   - Bug 1902078 - Adding basicutil.h to use HexString2SECItem function
-   - Bug 1908990 - removing dirent.c from build
-   - Bug 1902078 - Allow handing in keymaterial to shlibsign to make the output reproducible (
-   - Bug 1908990 - remove nec4.3, sunos4, riscos and SNI references
-   - Bug 1908990 - remove other old OS (BSDI, old HP UX, NCR, openunix, sco, unixware or reliantUnix
-   - Bug 1908990 - remove mentions of WIN95
-   - Bug 1908990 - remove mentions of WIN16
-   - Bug 1913750 - More explicit directory naming
-   - Bug 1913755 - Add more options to TLS server fuzz target
-   - Bug 1913675 - Add more options to TLS client fuzz target
-   - Bug 1835240 - Use OSS-Fuzz corpus in NSS CI
-   - Bug 1908012 - set nssckbi version number to 2.70.
-   - Bug 1914499 - Remove Email Trust bit from ACCVRAIZ1 root cert.
-   - Bug 1908009 - Remove Email Trust bit from certSIGN ROOT CA.
-   - Bug 1908006 - Add Cybertrust Japan Roots to NSS.
-   - Bug 1908004 - Add Taiwan CA Roots to NSS.
-   - Bug 1911354 - remove search by decoded serial in nssToken_FindCertificateByIssuerAndSerialNumber.
-   - Bug 1913132 - Fix tstclnt CI build failure
-   - Bug 1913047 - vfyserv: ensure peer cert chain is in db for CERT_VerifyCertificateNow.
-   - Bug 1912427 - Enable all supported protocol versions for UDP
-   - Bug 1910361 - Actually use random PSK hash type
-   - Bug 1911576: Initialize NSS DB once
-   - Bug 1910361 - Additional ECH cipher suites and PSK hash types
-   - Bug 1903604: Automate corpus file generation for TLS client Fuzzer
-   - Bug 1910364 - Fix crash with UNSAFE_FUZZER_MODE
-   - Bug 1910605 - clang-format shlibsign.c
-
+   - Bug 1930806 - FIPS changes need to be upstreamed: force ems policy.
+   - Bug 1954724 - Prevent excess allocations in sslBuffer_Grow.
+   - Bug 1953429 - Remove Crl templates from ASN1 fuzz target.
+   - Bug 1953429 - Remove CERT_CrlTemplate from ASN1 fuzz target.
+   - Bug 1952855 - Fix memory leak in NSS_CMSMessage_IsSigned.
+   - Bug 1930807 - NSS policy updates.
+   - Bug 1951161 - Improve locking in nssPKIObject_GetInstances.
+   - Bug 1951394 - Fix race in sdb_GetMetaData.
+   - Bug 1951800 - Fix member access within null pointer.
+   - Bug 1950077 - Increase smime fuzzer memory limit.
+   - Bug 1949677 - Enable resumption when using custom extensions.
+   - Bug 1952568 - change CN of server12 test certificate.
+   - Bug 1949118 - Part 2: Add missing check in NSS_CMSDigestContext_FinishSingle.
+   - Bug 1949118 - Part 1: Fix smime UBSan errors.
+   - Bug 1930806 - FIPS changes need to be upstreamed: updated key checks.
+   - Bug 1951491 - Don't build libpkix in static builds.
+   - Bug 1951395 - handle `-p all` in try syntax.
+   - Bug 1951346 - fix opt-make builds to actually be opt.
+   - Bug 1951346 - fix opt-static builds to actually be opt.
+   - Bug 1916439 - Remove extraneous assert.
