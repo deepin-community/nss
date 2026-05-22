@@ -1282,6 +1282,7 @@ ssl3_SignHashesWithPrivKey(SSL3Hashes *hash, SECKEYPrivateKey *key,
     if (useRsaPss || hash->hashAlg == ssl_hash_none) {
         CK_MECHANISM_TYPE mech = PK11_MapSignKeyType(key->keyType);
         int signatureLen = PK11_SignatureLen(key);
+        PRInt32 optval;
 
         SECItem *params = NULL;
         CK_RSA_PKCS_PSS_PARAMS pssParams;
@@ -1292,6 +1293,17 @@ ssl3_SignHashesWithPrivKey(SSL3Hashes *hash, SECKEYPrivateKey *key,
         if (signatureLen <= 0) {
             PORT_SetError(SEC_ERROR_INVALID_KEY);
             goto done;
+        }
+        /* since we are calling PK11_SignWithMechanism directly, we need to check the
+         * key policy ourselves (which is already checked in SGN_Digest */
+        rv = NSS_OptionGet(NSS_KEY_SIZE_POLICY_FLAGS, &optval);
+        if ((rv == SECSuccess) &&
+            ((optval & NSS_KEY_SIZE_POLICY_SIGN_FLAG) == NSS_KEY_SIZE_POLICY_SIGN_FLAG)) {
+            rv = SECKEY_EnforceKeySize(key->keyType, SECKEY_PrivateKeyStrengthInBits(key),
+                                       SEC_ERROR_SIGNATURE_ALGORITHM_DISABLED);
+            if (rv != SECSuccess) {
+                goto done; /* error code already set */
+            }
         }
 
         buf->len = (unsigned)signatureLen;
@@ -3508,6 +3520,27 @@ ssl3_ComputeMasterSecretInt(sslSocket *ss, PK11SymKey *pms,
     CK_TLS12_MASTER_KEY_DERIVE_PARAMS master_params;
     unsigned int master_params_len;
 
+    /* if we are using TLS and we aren't using the extended master secret,
+     * and SEC_OID_TLS_REQUIRE_EMS policy is true, fail. The caller will
+     * send an alert (eventually). In the RSA Server case, the alert
+     * won't happen until Finish time because the upper level code
+     * can't tell a difference between this failure and an RSA decrypt
+     * failure, so it will proceed with a faux key */
+    if (isTLS) {
+        PRUint32 policy;
+        SECStatus rv;
+
+        /* first fetch the policy for this algorithm */
+        rv = NSS_GetAlgorithmPolicy(SEC_OID_TLS_REQUIRE_EMS, &policy);
+        /* we only look at the policy if we can fetch it. */
+        if ((rv == SECSuccess) && (policy & NSS_USE_ALG_IN_SSL_KX)) {
+            /* just set the error, we don't want to map any errors
+             * set by NSS_GetAlgorithmPolicy here */
+            PORT_SetError(SSL_ERROR_MISSING_EXTENDED_MASTER_SECRET);
+            return SECFailure;
+        }
+    }
+
     if (isTLS12) {
         if (isDH)
             master_derive = CKM_TLS12_MASTER_KEY_DERIVE_DH;
@@ -3568,6 +3601,7 @@ tls_ComputeExtendedMasterSecretInt(sslSocket *ss, PK11SymKey *pms,
     ssl3CipherSpec *pwSpec = ss->ssl3.pwSpec;
     CK_NSS_TLS_EXTENDED_MASTER_KEY_DERIVE_PARAMS extended_master_params;
     SSL3Hashes hashes;
+
     /*
      * Determine whether to use the DH/ECDH or RSA derivation modes.
      */
@@ -9484,7 +9518,7 @@ ssl3_HandleClientHelloPart2(sslSocket *ss,
                 if (suite->cipher_suite == sid->u.ssl3.cipherSuite)
                     break;
             }
-            PORT_Assert(j > 0);
+
             if (j == 0)
                 break;
 
