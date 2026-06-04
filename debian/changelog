@@ -1,3 +1,10 @@
+nss (2:3.105-2deepin2) unstable; urgency=medium
+
+  * Document CVE-2026-6766, CVE-2026-6767: affect NSS, upstream not yet disclosed
+  * CVE-2026-2959: no public information available
+
+ -- deepin-ci-robot <packages@deepin.org>  Thu, 04 Jun 2026 09:00:00 +0800
+
 nss (2:3.105-2deepin1) unstable; urgency=medium
 
   * fix CVE-2026-2781 
