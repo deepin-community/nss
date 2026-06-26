@@ -1,9 +1,12 @@
 nss (2:3.105-2deepin2) unstable; urgency=medium
 
-  * Document CVE-2026-6766, CVE-2026-6767: affect NSS, upstream not yet disclosed
+  * Fix CVE-2026-6766: integer underflow in tls13_AEAD when ciphertext is
+    shorter than tag (Bug 2023207)
+  * Fix CVE-2026-6767: permittedSubtrees wildcard matching bypass
+    (Bug 2023209)
   * CVE-2026-2959: no public information available
 
- -- deepin-ci-robot <packages@deepin.org>  Thu, 04 Jun 2026 09:00:00 +0800
+ -- deepin-ci-robot <packages@deepin.org>  Fri, 26 Jun 2026 13:24:00 +0800
 
 nss (2:3.105-2deepin1) unstable; urgency=medium
 
