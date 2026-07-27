@@ -190,16 +190,17 @@ STAN_RemoveModuleFromDefaultTrustDomain(
             nssToken_NotifyCertsNotVisible(token);
             NSSRWLock_LockWrite(td->tokensLock);
             nssList_Remove(td->tokenList, token);
+            /* Rebuild the td->tokens iterator clone while still holding the
+             * write lock, so that concurrent readers cannot observe the token
+             * through a stale iterator after we drop the lock and free it. */
+            nssListIterator_Destroy(td->tokens);
+            td->tokens = nssList_CreateIterator(td->tokenList);
             NSSRWLock_UnlockWrite(td->tokensLock);
             PK11Slot_SetNSSToken(module->slots[i], NULL);
             (void)nssToken_Destroy(token); /* for the |td->tokenList| reference */
             (void)nssToken_Destroy(token); /* for our PK11Slot_GetNSSToken reference */
         }
     }
-    NSSRWLock_LockWrite(td->tokensLock);
-    nssListIterator_Destroy(td->tokens);
-    td->tokens = nssList_CreateIterator(td->tokenList);
-    NSSRWLock_UnlockWrite(td->tokensLock);
     return SECSuccess;
 }
 
@@ -575,7 +576,7 @@ get_nss3trust_from_nss4trust(nssTrustLevel t)
         rt |= CERTDB_TERMINAL_RECORD | CERTDB_TRUSTED;
     }
     if (t == nssTrustLevel_TrustedDelegator) {
-        rt |= CERTDB_VALID_CA | CERTDB_TRUSTED_CA;
+        rt |= CERTDB_VALID_CA | CERTDB_TRUSTED_CA | CERTDB_NS_TRUSTED_CA;
     }
     if (t == nssTrustLevel_NotTrusted) {
         rt |= CERTDB_TERMINAL_RECORD;
@@ -607,6 +608,25 @@ cert_trust_from_stan_trust(NSSTrust *t, PLArenaPool *arena)
     rvTrust->emailFlags = get_nss3trust_from_nss4trust(t->emailProtection);
     rvTrust->objectSigningFlags = get_nss3trust_from_nss4trust(t->codeSigning);
     return rvTrust;
+}
+
+PRBool
+nssTrust_HandleTrustForCERTCert(CERTCertificate *cert, CERTCertTrust *trustPtr)
+{
+    NSSCertificate *c = cert->nssCertificate;
+    NSSTrustDomain *td = STAN_GetDefaultTrustDomain();
+    NSSTrust *t;
+    t = nssTrustDomain_FindTrustForCertificate(td, c);
+    if (t) {
+        CERTCertTrust *rvTrust;
+        rvTrust = cert_trust_from_stan_trust(t, cert->arena);
+        nssTrust_Destroy(t);
+        if (rvTrust) {
+            *trustPtr = *rvTrust;
+            return PR_TRUE;
+        }
+    }
+    return PR_FALSE;
 }
 
 CERTCertTrust *

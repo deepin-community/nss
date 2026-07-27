@@ -25,6 +25,10 @@ libnss3.so libnss3 #MINVER#
 # This is not a typo.
  (symver)NSS_3.107 2:3.108
  (symver)NSS_3.110 2:3.110
+ (symver)NSS_3.113 2:3.113
+ (symver)NSS_3.115 2:3.115
+ (symver)NSS_3.116 2:3.116
+ (symver)NSS_3.117 2:3.117
  (symver)NSS_3.11 2:3.13.4-2~
  (symver)NSS_3.11.1 2:3.13.4-2~
  (symver)NSS_3.11.2 2:3.13.4-2~
@@ -39,6 +43,7 @@ libnss3.so libnss3 #MINVER#
  (symver)NSS_3.12.6 2:3.13.4-2~
  (symver)NSS_3.12.7 2:3.13.4-2~
  (symver)NSS_3.12.9 2:3.13.4-2~
+ (symver)NSS_3.126 2:3.126
  (symver)NSS_3.13 2:3.13.4-2~
  (symver)NSS_3.13.2 2:3.13.4-2~
  (symver)NSS_3.14 2:3.14
@@ -105,6 +110,7 @@ libnssutil3.so libnss3 #MINVER#
 * Build-Depends-Package: libnss3-dev
  (symver)NSSUTIL_3.101 2:3.101
  (symver)NSSUTIL_3.108 2:3.108
+ (symver)NSSUTIL_3.117 2:3.117
  (symver)NSSUTIL_3.12 2:3.13.4-2~
  (symver)NSSUTIL_3.12.3 2:3.13.4-2~
  (symver)NSSUTIL_3.12.5 2:3.13.4-2~
