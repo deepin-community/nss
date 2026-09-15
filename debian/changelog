@@ -1,3 +1,9 @@
+nss (2:3.126-1deepin1) unstable; urgency=medium
+
+  * Run shlibsign with a fixed HMAC key to make libnss3 reproducible.
+
+ -- Tianyu Chen <sweetyfish@deepin.org>  Tue, 15 Sep 2026 16:50:03 +0800
+
 nss (2:3.126-1) unstable; urgency=medium
 
   * New upstream release.
