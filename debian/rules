@@ -179,7 +179,7 @@ endif
 override_dh_strip:
 	dh_strip
 	$(foreach lib,libsoftokn3.so libfreebl3.so libfreeblpriv3.so libnssdbm3.so, \
-		$(call cmd,umask 022; $(SHLIBSIGN) -v -i debian/libnss3/usr/lib/$(DEB_HOST_MULTIARCH)/$(lib)))
+		$(call cmd,umask 022; $(SHLIBSIGN) -v -K 0000000000000000000000000000000000000000000000000000000000000000 -i debian/libnss3/usr/lib/$(DEB_HOST_MULTIARCH)/$(lib)))
 
 ifeq ($(DEB_HOST_ARCH),$(DEB_BUILD_ARCH))
 	# Check FIPS mode correctly works
